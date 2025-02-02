@@ -1,5 +1,6 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
+$(call inherit-product-if-exists, vendor/addons/config.mk)
 
 PRODUCT_BRAND ?= AxionOS
 
@@ -100,6 +101,11 @@ ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
 include vendor/lineage/config/lineage_sdk_common.mk
 endif
 
+ART_BUILD_TARGET_NDEBUG := false
+ART_BUILD_TARGET_DEBUG := false
+ART_BUILD_HOST_NDEBUG := false
+ART_BUILD_HOST_DEBUG := false
+
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
@@ -107,6 +113,9 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 # the size of the system image. This has no bearing on stack traces, but will
 # leave less information available via JDWP.
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+
+# Disable dex2oat debug
+USE_DEX2OAT_DEBUG := false
 
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
@@ -270,9 +279,79 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/crowdin/overlay
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/lineage/build/target/product/security/lineage
 
+# Art
+PRODUCT_PRODUCT_PROPERTIES += \
+    pm.dexopt.post-boot=extract \
+    pm.dexopt.boot-after-mainline-update=verify \
+    pm.dexopt.install=speed-profile \
+    pm.dexopt.install-fast=skip \
+    pm.dexopt.install-bulk=speed-profile \
+    pm.dexopt.install-bulk-secondary=verify \
+    pm.dexopt.install-bulk-downgraded=verify \
+    pm.dexopt.install-bulk-secondary-downgraded=extract \
+    pm.dexopt.bg-dexopt=speed-profile \
+    pm.dexopt.ab-ota=speed-profile \
+    pm.dexopt.inactive=verify \
+    pm.dexopt.cmdline=verify \
+    pm.dexopt.shared=quicken \
+    pm.dexopt.first-boot=verify \
+    pm.dexopt.boot-after-ota=verify \
+    dalvik.vm.minidebuginfo=false \
+    dalvik.vm.dex2oat-minidebuginfo=false
+    dalvik.vm.dex2oat-minidebuginfo=false \
+    pm.dexopt.downgrade_after_inactive_days=10 \
+    dalvik.vm.madvise-random=true
+    
+# lmk 
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.lmk.critical_upgrade=true \
+    ro.lmk.upgrade_pressure=40 \
+    ro.lmk.downgrade_pressure=60 \
+    ro.lmk.kill_heaviest_task=true \
+    ro.lmk.medium=701
+
+## Art
+
+# Always preopt extracted APKs to prevent extracting out of the APK for gms
+# modules.
+PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true
+
+# Do not generate libartd.
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+
+# Speed profile services and wifi-service to reduce RAM and storage.
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
+
+# Use a profile based boot image for this device. Note that this is currently a
+# generic profile and not Android Go optimized.
+PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
+PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/boot/boot-image-profile.txt
+
+# Disable dex2oat debug
+USE_DEX2OAT_DEBUG := false
+
+## Java
+# Strip the local variable table and the local variable type table to reduce
+# the size of the system image. This has no bearing on stack traces, but will
+# leave less information available via JDWP.
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+
+PRODUCT_DISABLE_SCUDO := true
+
+# Optimize java for system processes
+SYSTEM_OPTIMIZE_JAVA := true
+SYSTEMUI_OPTIMIZE_JAVA := true
+
+# Product Copy
+PRODUCT_COPY_FILES += \
+    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_PRODUCT)/usr/keylayout/Vendor_045e_Product_0719.kl \
+    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.freeform_window_management.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.sip.voip.xml
+
+ifeq ($(WITH_GMS),true)
+-include vendor/gapps/arm64/arm64-vendor.mk
+endif
+
 include vendor/lineage/config/version.mk
 
 -include vendor/lineage-priv/keys/keys.mk
-
--include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/lineage/config/partner_gms.mk

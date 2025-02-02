@@ -16,6 +16,7 @@ PRODUCT_PACKAGES += \
     Seedvault \
     Twelve
 
+PRODUCT_NO_CAMERA ?= true
 ifneq ($(PRODUCT_NO_CAMERA),true)
 PRODUCT_PACKAGES += \
     Aperture
