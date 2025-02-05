@@ -345,6 +345,7 @@ SYSTEMUI_OPTIMIZE_JAVA := true
 # Disable async MTE on a few processes
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.app.com.android.se=off \
+    persist.arm64.memtag.app.com.android.bluetooth=off
     persist.arm64.memtag.app.com.google.android.bluetooth=off \
     persist.arm64.memtag.app.com.android.nfc=off \
     persist.arm64.memtag.process.system_server=off
