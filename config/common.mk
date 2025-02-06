@@ -359,7 +359,9 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     LMOFreeform \
-    LMOFreeformSidebar
+    LMOFreeformSidebar \
+    Backgrounds \
+    GameSpace
 
 ifneq ($(TARGET_FACE_UNLOCK_SUPPORTED),false)
 PRODUCT_PACKAGES += \
