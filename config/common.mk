@@ -372,6 +372,10 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-custom-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-custom-product.xml
 
+# Disable default frame rate limit for games
+PRODUCT_PRODUCT_PROPERTIES += \
+    debug.graphics.game_default_frame_rate.disabled=true
+
 ifeq ($(WITH_GMS),true)
 -include vendor/gapps/arm64/arm64-vendor.mk
 endif
