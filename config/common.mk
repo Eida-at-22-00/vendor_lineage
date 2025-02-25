@@ -1,6 +1,9 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product-if-exists, vendor/addons/config.mk)
+ifeq ($(TARGET_INCLUDE_VIPERFX),true)
+$(call inherit-product-if-exists, packages/apps/ViPER4AndroidFX/config.mk)
+endif
 include vendor/lineage/audio/config.mk
 
 PRODUCT_BRAND ?= AxionOS
