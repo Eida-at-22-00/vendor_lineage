@@ -358,6 +358,12 @@ PRODUCT_PACKAGES += \
     ColumbusService \
     OmniJaws
 
+TARGET_INCLUDE_MATLOG ?= false
+ifeq ($(TARGET_INCLUDE_MATLOG),true)
+PRODUCT_PACKAGES += \
+    MatLog
+endif
+
 ifneq ($(TARGET_FACE_UNLOCK_SUPPORTED),false)
 PRODUCT_PACKAGES += \
     FaceUnlock
