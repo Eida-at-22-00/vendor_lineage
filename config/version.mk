@@ -45,6 +45,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 AXION_CPU_SMALL_CORES ?= 0,1,2,3
 AXION_CPU_BIG_CORES ?= 4,5,6,7
+BYPASS_CHARGE_SUPPORTED ?= false
 # AxionOS properties
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.device_camera_info_rear=$(AXION_CAMERA_REAR_INFO) \
@@ -52,4 +53,5 @@ PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.axion_maintainer=$(AXION_MAINTAINER) \
     persist.sys.axion_processor_info=$(AXION_PROCESSOR)\
     persist.sys.axion_cpu_big=$(AXION_CPU_BIG_CORES) \
-    persist.sys.axion_cpu_small=$(AXION_CPU_SMALL_CORES)
+    persist.sys.axion_cpu_small=$(AXION_CPU_SMALL_CORES)\
+    persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED)\
