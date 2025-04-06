@@ -340,8 +340,6 @@ PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := device/google/atv/products/low
 # leave less information available via JDWP.
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 
-PRODUCT_DISABLE_SCUDO := true
-
 # Optimize java for system processes
 SYSTEM_OPTIMIZE_JAVA := true
 SYSTEMUI_OPTIMIZE_JAVA := true
