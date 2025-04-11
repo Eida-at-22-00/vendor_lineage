@@ -185,4 +185,7 @@
     <string name="config_clockFontFamily" translatable="false">milky</string>
     <string name="config_headlineFontFamily" translatable="false">Rookery-Regular</string>
     <string name="config_headlineFontFamilyMedium" translatable="false">Rookery-Regular</string>
+
+    <!-- Indicating if keyboard vibration settings supported or not. -->
+    <bool name="config_keyboardVibrationSettingsSupported">true</bool>
 </resources>
