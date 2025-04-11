@@ -1,5 +1,10 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
 if [ "$#" -ne 3 ]; then
     echo "Usage: $0 <TARGET_DEVICE> <PRODUCT_OUT> <FILENAME>"
     exit 1
@@ -68,13 +73,13 @@ echo "JSON saved to: $JSON_FILE"
 cat "$JSON_FILE"
 
 echo "=========================================="
-echo "         Welcome to the Axion             "
+echo -e "         ${RED}Welcome to the Axion${NC}             "
 echo "=========================================="
-echo "        BUILD COMPLETED SUCCESSFULLY      "
+echo -e "        ${GREEN}BUILD COMPLETED SUCCESSFULLY${NC}      "
 echo "------------------------------------------"
 echo "Datetime : $DATETIME"
 echo "Size     : $(numfmt --to=iec $SIZE) ($SIZE bytes)"
-echo "Output   : $FILE_PATH"
+echo -e "Output   : ${BLUE}$FILE_PATH${NC}"
 echo "=========================================="
 
 exit 0
