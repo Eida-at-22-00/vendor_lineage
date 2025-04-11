@@ -62,7 +62,7 @@ cat > "$JSON_FILE" <<EOF
             "id": "$ID",
             "romtype": "$ROMTYPE",
             "size": $SIZE,
-            "url": "",
+            "url": "https://www.pling.com/p/2259442/",
             "version": "$VERSION"
         }
     ]
