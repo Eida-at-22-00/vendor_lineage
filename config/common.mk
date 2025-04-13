@@ -331,8 +331,8 @@ PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 # Use a profile based boot image for this device. Note that this is currently a
 # generic profile and not Android Go optimized.
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
-PRODUCT_COPY_FILES += device/google/atv/products/lowram_boot_profiles/preloaded-classes:system/etc/preloaded-classes
-PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := device/google/atv/products/lowram_boot_profiles/boot-image-profile.txt
+PRODUCT_COPY_FILES += vendor/lineage/prebuilt/products/preloaded-classes:system/etc/preloaded-classes
+PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := vendor/lineage/prebuilt/products/boot-image-profile.txt
 
 ## Java
 # Strip the local variable table and the local variable type table to reduce
