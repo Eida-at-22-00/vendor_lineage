@@ -49,6 +49,7 @@ AXION_CPU_BG ?= 0-2
 AXION_CPU_FG ?= 0-5
 AXION_CPU_LIMIT_BG ?= 0-1
 BYPASS_CHARGE_SUPPORTED ?= false
+AXION_DEBUGGING_ENABLED ?= false
 # AxionOS properties
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.device_camera_info_rear=$(AXION_CAMERA_REAR_INFO) \
@@ -60,4 +61,5 @@ PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED) \
     persist.sys.axion_cpu_bg=$(AXION_CPU_BG) \
     persist.sys.axion_cpu_limit_bg=$(AXION_CPU_LIMIT_BG) \
-    persist.sys.axion_cpu_fg=$(AXION_CPU_FG)
+    persist.sys.axion_cpu_fg=$(AXION_CPU_FG) \
+    ro.sys.axion_userdebug_enabled=$(AXION_DEBUGGING_ENABLED)
