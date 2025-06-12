@@ -48,6 +48,7 @@ AXION_CPU_BIG_CORES ?= 4,5
 AXION_CPU_BG ?= 0-2
 AXION_CPU_FG ?= 0-5
 AXION_CPU_LIMIT_BG ?= 0-1
+AXION_CPU_LIMIT_UI ?= 0-3
 BYPASS_CHARGE_SUPPORTED ?= false
 AXION_DEBUGGING_ENABLED ?= false
 # 2 small cores only
@@ -64,6 +65,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.axion_cpu_bg=$(AXION_CPU_BG) \
     persist.sys.axion_cpu_limit_bg=$(AXION_CPU_LIMIT_BG) \
     persist.sys.axion_cpu_fg=$(AXION_CPU_FG) \
+    persist.sys.axion_cpu_limit_ui=$(AXION_CPU_LIMIT_UI) \
     ro.sys.axion_userdebug_enabled=$(AXION_DEBUGGING_ENABLED) \
     ro.axion.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)
 
