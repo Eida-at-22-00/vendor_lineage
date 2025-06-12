@@ -62,7 +62,7 @@ cat > "$JSON_FILE" <<EOF
             "id": "$ID",
             "romtype": "$ROMTYPE",
             "size": $SIZE,
-            "url": "https://www.pling.com/p/2259442/",
+            "url": "https://github.com/AxionAOSP/AxionOS_Pixels/releases/download/$VERSION/$FILENAME",
             "version": "$VERSION"
         }
     ]
