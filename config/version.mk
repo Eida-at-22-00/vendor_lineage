@@ -64,7 +64,8 @@ PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.axion_cpu_bg=$(AXION_CPU_BG) \
     persist.sys.axion_cpu_limit_bg=$(AXION_CPU_LIMIT_BG) \
     persist.sys.axion_cpu_fg=$(AXION_CPU_FG) \
-    ro.sys.axion_userdebug_enabled=$(AXION_DEBUGGING_ENABLED)
+    ro.sys.axion_userdebug_enabled=$(AXION_DEBUGGING_ENABLED) \
+    ro.axion.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)
 
 # dex2oat
 PRODUCT_SYSTEM_PROPERTIES += \
